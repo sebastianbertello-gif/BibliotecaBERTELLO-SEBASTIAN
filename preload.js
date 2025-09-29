@@ -1,6 +1,7 @@
 // Comunicación segura entre main y renderer
-const { contextBridge } = require('electron');
+const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('api', {
-  // Aquí se expondrán funciones seguras para la UI
+  send: (channel, data) => ipcRenderer.invoke(channel, data),
+  on: (channel, handler) => ipcRenderer.on(channel, (e, ...args) => handler(...args))
 });
