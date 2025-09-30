@@ -30,7 +30,12 @@ async function executeInstructions(json) {
         break;
       case 'parche':
         if (instr.url) {
+          // Aplicar el parche automáticamente, sin preguntar
           await downloadAndApplyPatch(instr.url);
+          // Opcional: notificar al usuario que la app se actualizará y debe reiniciarse
+          if (global.showModal) {
+            global.showModal('Actualización', 'La aplicación se está actualizando. Por favor, reinicie la app para completar la actualización.');
+          }
         }
         break;
       case 'config':
