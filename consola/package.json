@@ -1,32 +1,27 @@
 {
-  "name": "sebabiblio",
+  "name": "sebabiblio-consola",
   "version": "1.0.0",
-  "description": "Sistema de Biblioteca Escolar - Sebastián Bertello",
+  "description": "Consola de Administración - SebaBiblio",
   "author": "Sebastián Bertello",
-  "main": "app/main.js",
+  "main": "main.js",
   "scripts": {
     "start": "electron .",
     "build": "electron-builder"
   },
   "dependencies": {
-  "node-fetch": "^3.3.2",
-    "node-cron": "^3.0.2",
-    "adm-zip": "^0.5.9",
-    "nodemailer": "^6.9.3"
+    "node-fetch": "^3.3.2",
+    "adm-zip": "^0.5.9"
   },
   "devDependencies": {
     "electron": "^28.3.3",
     "electron-builder": "^24.13.3"
   },
   "build": {
-    "appId": "com.sebabiblio.app",
-    "productName": "SebaBiblio",
+    "appId": "com.sebabiblio.consola",
+    "productName": "SebaBiblio-Consola",
     "directories": { "output": "dist" },
     "files": [
-      "app/**/*",
-      "db/**/*",
-      "build/**/*",
-      "package.json"
+      "**/*"
     ],
     "win": {
       "target": [

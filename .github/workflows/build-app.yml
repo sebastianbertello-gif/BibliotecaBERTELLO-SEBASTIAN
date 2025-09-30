@@ -1,0 +1,36 @@
+name: Build Biblioteca App (Windows Portable)
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: ./
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Ensure NSIS
+        run: choco install nsis -y
+
+      - name: Build Biblioteca portable exe
+        run: npx electron-builder --win portable --x64 --ia32 --publish never
+
+      - name: Upload Biblioteca artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: SebaBiblio-portable
+          path: dist/**
